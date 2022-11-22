@@ -1,0 +1,74 @@
+---
+import Navigation from "./Navigation.astro";
+---
+
+<header class="py-5">
+  <div class="custom-container mx-auto relative">
+    <div class="flex items-center">
+      <div class="mr-auto">
+        <a
+          href="#"
+          class="font-bold text-2xl text-textMain dark:text-textMain_dark"
+          >Sardor</a
+        >
+      </div>
+      <nav class="mr-5">
+        <Navigation />
+      </nav>
+
+      <button
+        id="nav-toggle"
+        class="md:hidden focus:ring-1 focus:ring-textMain dark:focus:ring-textMain_dark rounded-sm flex flex-col items-center p-1 gap-1 w-7 justify-center"
+      >
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<style>
+  .line {
+    height: 2px;
+    @apply w-full bg-textMain;
+  }
+  :global(.dark) .line {
+    @apply bg-textMain_dark;
+  }
+</style>
+
+<script>
+  const btn = document.querySelector("#toggle-mode");
+  const doc = document.documentElement;
+  if (
+    localStorage.theme === "dark" ||
+    (!("theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    doc.classList.add("dark");
+  } else {
+    doc.classList.remove("dark");
+  }
+
+  btn.addEventListener("click", () => {
+    if (doc.classList.contains("dark")) {
+      doc.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    } else {
+      doc.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    }
+  });
+
+  const toggle = document.getElementById("nav-toggle");
+  const navContainer = document.getElementById("nav-container");
+
+  toggle.addEventListener("click", () => {
+    if (navContainer.classList.contains("open")) {
+      navContainer.classList.remove("open");
+    } else {
+      navContainer.classList.add("open");
+    }
+  });
+</script>

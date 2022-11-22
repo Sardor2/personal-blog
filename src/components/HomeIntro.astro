@@ -1,0 +1,179 @@
+---
+import profilePic from "../assets/profile-pic.webp";
+import Socials from "./Socials.astro";
+---
+
+<section class="pt-10 md:pt-40 lg:pt-56 lg:pb-52">
+  <div class="custom-container">
+    <div class="flex flex-col md:flex-row">
+      <div class="w-full lg:w-1/2 text-center md:text-left flex flex-col mt-10">
+        <h1 class="text-4xl lg:text-6xl font-bold mb-5">Hi, I'm Sardor</h1>
+        <p class="text-textLight dark:text-textMain_dark text-xl lg:text-2xl">
+          An architect, software developer, YouTuber and keynote speaker. On
+          this site I write about my learning and experience.
+        </p>
+        <div class="my-4"></div>
+        <Socials />
+      </div>
+      <div
+        class="cover-img mx-auto w-5/12 md:w-auto md:ml-auto -order-1 mb-7 md:mb-0 md:order-1"
+      >
+        <img class="rounded-full w-full" src={profilePic} alt="" />
+        <div class="dot-parent dot-1"><div class="dot"></div></div>
+        <div class="dot-parent dot-2"><div class="dot"></div></div>
+        <div class="dot-parent dot-3"><div class="dot"></div></div>
+        <div class="dot-parent dot-4"><div class="dot"></div></div>
+        <div class="dot-parent dot-5"><div class="dot"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cover-img {
+    border-radius: 50%;
+    position: relative;
+  }
+
+  .cover-img::before {
+    height: 128%;
+    left: -14%;
+    top: -14%;
+    width: 128%;
+  }
+
+  .cover-img::after {
+    height: 168%;
+    left: -34%;
+    top: -34%;
+    width: 168%;
+  }
+
+  .dot-parent {
+    z-index: -1;
+    border-radius: 50%;
+    position: absolute;
+  }
+
+  .dot {
+    border-radius: 50%;
+    filter: blur(2px);
+  }
+
+  .dot-1 {
+    animation: spin 400s linear infinite;
+    animation-delay: calc(400 / -8) s;
+    height: 128%;
+    left: -14%;
+    top: -14%;
+    width: 128%;
+  }
+  .dot-1 .dot {
+    background: yellow;
+    height: 5%;
+    left: 47.5%;
+    position: relative;
+    top: -2.5%;
+    width: 5%;
+  }
+
+  .dot-2 {
+    animation: spin var(--dot-anim-duration) linear infinite;
+    animation-delay: calc(var(--dot-anim-duration) / -1.81);
+    height: 128%;
+    left: -14%;
+    top: -14%;
+    width: 128%;
+  }
+  .dot-2 .dot {
+    background: #ff005c;
+    height: 5%;
+    left: 47.5%;
+    position: relative;
+    top: -2.5%;
+    width: 5%;
+  }
+
+  .dot-3 {
+    -webkit-animation: spin var(--dot-anim-duration) linear infinite;
+    animation: spin var(--dot-anim-duration) linear infinite;
+    -webkit-animation-delay: calc(var(--dot-anim-duration) / -3.33);
+    animation-delay: calc(var(--dot-anim-duration) / -3.33);
+    height: 168%;
+    left: -34%;
+    top: -34%;
+    width: 168%;
+  }
+  .dot-3 .dot {
+    background: #ffab73;
+    height: 5%;
+    left: 47.5%;
+    position: relative;
+    top: -2.5%;
+    width: 5%;
+  }
+
+  .dot-4 {
+    -webkit-animation: spin var(--dot-anim-duration) linear infinite;
+    animation: spin var(--dot-anim-duration) linear infinite;
+    -webkit-animation-delay: calc(var(--dot-anim-duration) / -1.08);
+    animation-delay: calc(var(--dot-anim-duration) / -1.08);
+    height: 168%;
+    left: -34%;
+    top: -34%;
+    width: 168%;
+  }
+  .dot-4 .dot {
+    background: #4a47a3;
+    height: 5%;
+    left: 47.5%;
+    position: relative;
+    top: -2.5%;
+    width: 5%;
+  }
+
+  .dot-5 {
+    -webkit-animation: spin var(--dot-anim-duration) linear infinite;
+    animation: spin var(--dot-anim-duration) linear infinite;
+    -webkit-animation-delay: calc(var(--dot-anim-duration) / -1.48);
+    animation-delay: calc(var(--dot-anim-duration) / -1.48);
+    height: 168%;
+    left: -34%;
+    top: -34%;
+    width: 168%;
+  }
+  .dot-5 .dot {
+    background: #80abff;
+    height: 6%;
+    left: 47%;
+    position: relative;
+    top: -3%;
+    width: 6%;
+  }
+
+  .cover-img::before,
+  .cover-img::after {
+    border: 2px dashed;
+    border-radius: 50%;
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    z-index: -3;
+    @apply border-gray-200;
+  }
+
+  :global(.dark) .cover-img::after,
+  :global(.dark) .cover-img::before {
+    @apply border-gray-700;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(1turn);
+    }
+  }
+</style>

@@ -1,0 +1,11 @@
+---
+export interface Props {
+  url: string;
+  title: string;
+}
+const { title, url } = Astro.props;
+---
+
+<li>
+  <a href={url}>{title}</a>
+</li>

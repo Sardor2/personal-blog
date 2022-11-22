@@ -1,0 +1,65 @@
+---
+---
+
+<div
+  id="nav-container"
+  class="bg-bgMain dark:bg-bgMain_dark flex -z-10 md:z-auto transform pointer-events-none md:pointer-events-auto translate-y-5 scale-95 opacity-0 md:opacity-100 md:transform-none transition-transform flex-col md:flex-row gap-3 md:gap-8 text-textMain dark:text-textMain_dark font-medium text-base right-5 top-10 md:right-0 md:top-0 absolute shadow-xl md:shadow-none md:relative p-5 w-36 md:w-auto md:p-0 border md:border-0 rounded-md"
+>
+  <a class="nav-item" href="/">Home</a>
+  <a class="nav-item" href="/about">About</a>
+  <a class="nav-item" href="/blog">Blog</a>
+  <a class="nav-item" href="/tags">Tags</a>
+  <a class="nav-item" href="/">Contact</a>
+
+  <button class="flex items-center" id="toggle-mode">
+    <svg
+      aria-label="light"
+      fill="currentColor"
+      class="text-white hover:text-primary w-5 h-5 hidden dark:block"
+      viewBox="0 0 24 24"
+      ><path
+        d="M10.8 1.2v2.4a1.2 1.2 0 102.4 0V1.2a1.2 1.2 0 10-2.4 0zM18.876 7.028a1.195 1.195 0 01-1.697-.03 1.2 1.2 0 01.029-1.696l1.727-1.668a1.202 1.202 0 011.668 1.728l-1.727 1.666zM12 16.8c2.647 0 4.8-2.153 4.8-4.8S14.647 7.2 12 7.2A4.805 4.805 0 007.2 12c0 2.647 2.153 4.8 4.8 4.8zM5.124 16.972l-1.727 1.666a1.2 1.2 0 001.668 1.728l1.727-1.668a1.2 1.2 0 00-1.668-1.726zM17.18 17.002c.46-.477 1.22-.49 1.696-.03l1.727 1.666a1.2 1.2 0 01-1.668 1.728l-1.727-1.668a1.2 1.2 0 01-.029-1.696zM12 19.2a1.2 1.2 0 00-1.2 1.2v2.4a1.2 1.2 0 102.4 0v-2.4a1.2 1.2 0 00-1.2-1.2zM5.065 3.634a1.2 1.2 0 00-1.668 1.728l1.727 1.666a1.195 1.195 0 001.697-.03 1.2 1.2 0 00-.029-1.696L5.065 3.634zM3.6 10.8a1.2 1.2 0 110 2.4H1.2a1.2 1.2 0 110-2.4h2.4zM22.8 10.8h-2.4a1.2 1.2 0 100 2.4h2.4a1.2 1.2 0 100-2.4z"
+      ></path>
+    </svg>
+
+    <svg
+      aria-label="dark"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      class="text-textMain hover:text-primary w-5 h-5 dark:hidden"
+      ><path
+        d="M12.228 23.999l.114.001a12.31 12.31 0 008.762-3.624 12.269 12.269 0 002.803-4.315 1.2 1.2 0 00-1.531-1.557c-3.678 1.339-7.836.426-10.593-2.326a10.078 10.078 0 01-2.33-10.564A1.2 1.2 0 007.899.08a12.271 12.271 0 00-4.792 3.292c-4.24 4.722-4.103 12.278.31 16.843A12.311 12.311 0 0012.227 24zM4.892 4.975a9.882 9.882 0 011.65-1.474c-.475 3.772.797 7.633 3.544 10.376 2.75 2.743 6.62 4.008 10.394 3.538-.32.448-.678.87-1.071 1.262A9.932 9.932 0 0112.34 21.6l-.092-.001a9.928 9.928 0 01-7.109-3.053C1.585 14.868 1.473 8.78 4.892 4.975z"
+      ></path>
+    </svg>
+  </button>
+</div>
+
+<style>
+  .nav-item {
+    @apply relative;
+  }
+
+  .nav-item:hover::after {
+    transform: scale(1);
+    transform-origin: 0 50%;
+  }
+
+  .nav-item:after {
+    content: "";
+    opacity: 1;
+    position: absolute;
+    border-radius: 2px;
+    height: 2px;
+    left: 0;
+    width: 16px;
+    bottom: -2px;
+    transform-origin: 100% 50%;
+    transition: transform 0.3s cubic-bezier(0.2, 1, 0.3, 1);
+    transform: scaleX(0);
+    @apply bg-textMain;
+  }
+
+  :global(.dark) .nav-item::after {
+    @apply bg-textMain_dark;
+  }
+</style>
