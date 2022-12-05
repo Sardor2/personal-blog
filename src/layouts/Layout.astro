@@ -1,7 +1,7 @@
 ---
-import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
-import Navigation from "../components/Navigation.astro";
+import "../styles/global.css";
+import "../styles/code.css";
 
 export interface Props {
   title: string;
@@ -32,59 +32,4 @@ const { title } = Astro.props;
   </body>
 </html>
 
-<style is:global>
-  @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
-  :root {
-    --dot-anim-duration: 400s;
-  }
-
-  html {
-    font-family: system-ui, sans-serif;
-    overflow-x: hidden;
-  }
-  code {
-    font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-      DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-  }
-
-  body {
-    @apply dark:bg-bgMain_dark bg-bgMain;
-    min-height: 100vh;
-    font-family: "Work Sans", sans-serif;
-  }
-
-  svg {
-    fill: currentColor;
-  }
-
-  .open {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: all;
-    z-index: 10;
-  }
-
-  .custom-container {
-    @apply max-w-6xl px-4 mx-auto;
-  }
-
-  h1,
-  h2,
-  h3 {
-    @apply text-textMain;
-  }
-
-  .dark h1,
-  h2,
-  h3 {
-    @apply text-textMain_dark;
-  }
-</style>
+<style is:global></style>

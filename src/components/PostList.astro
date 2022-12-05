@@ -1,0 +1,30 @@
+---
+import { Post } from "../types";
+import PostCard from "./PostCard.astro";
+
+export interface Props {
+  posts: Array<Post>;
+}
+const { posts } = Astro.props;
+---
+
+<section class="py-12">
+  <div class="custom-container px-4 md:px-16">
+    <h2 class="text-left text-2xl font-bold">
+      <span
+        class="relative after:absolute after:bg-primary after:-bottom-2 after:w-full after:left-0 after:rounded-sm after:h-1"
+        >Featured posts</span
+      >
+    </h2>
+
+    <div class="my-10 space-y-10">
+      {
+        posts.map((p) => (
+          <div class="">
+            <PostCard {...p} />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

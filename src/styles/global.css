@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --dot-anim-duration: 400s;
+}
+
+html {
+  font-family: system-ui, sans-serif;
+  overflow-x: hidden;
+}
+code {
+  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+    Bitstream Vera Sans Mono, Courier New, monospace;
+}
+
+body {
+  @apply dark:bg-bgMain_dark text-textMain bg-bgMain;
+  min-height: 100vh;
+  font-family: "Work Sans", sans-serif;
+  overflow-x: hidden;
+}
+
+.dark body {
+  @apply text-textMain_dark;
+}
+
+svg {
+  fill: currentColor;
+}
+
+.open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: all;
+  z-index: 10;
+}
+
+.custom-container {
+  @apply max-w-6xl mx-auto;
+}
+
+h1,
+h2,
+h3 {
+  @apply text-textMain;
+}
+
+.dark h1,
+.dark h2,
+.dark h3 {
+  @apply text-textMain_dark;
+}
+
+h2,
+h3 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+@media (max-width: 576px) {
+  h2,
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}

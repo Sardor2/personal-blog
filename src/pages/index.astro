@@ -1,11 +1,27 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card.astro";
 import HomeIntro from "../components/HomeIntro.astro";
+import PostList from "../components/PostList.astro";
+import { Post, PostFrontMatter } from "../types";
+import { MDXInstance } from "astro";
+
+const posts = await Astro.glob<MDXInstance<PostFrontMatter>>(
+  "../data/posts/*.{md,mdx}"
+);
+const mappedPosts: Post[] = posts.map(({ frontmatter }) => ({
+  date: frontmatter.pubDate,
+  description: frontmatter.description,
+  img: frontmatter.image.url,
+  altText: frontmatter.image.alt,
+  tag: frontmatter.tags[0],
+  title: frontmatter.title,
+  slug: frontmatter.slug,
+}));
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Sardor's Blog">
   <HomeIntro />
+  <PostList posts={mappedPosts} />
 </Layout>
 
 <style>

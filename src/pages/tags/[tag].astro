@@ -1,9 +1,15 @@
 ---
+import { MarkdownInstance, MDXInstance } from "astro";
 import BlogPost from "../../components/BlogPost.astro";
+import PostCard from "../../components/PostCard.astro";
+import PostList from "../../components/PostList.astro";
 import Layout from "../../layouts/Layout.astro";
+import { Post, PostFrontMatter } from "../../types";
 
 export async function getStaticPaths() {
-  const allPosts = await Astro.glob("../posts/*.md");
+  const allPosts = await Astro.glob<MDXInstance<PostFrontMatter>>(
+    "../../data/posts/*.{md,mdx}"
+  );
   const uniqueTags = [
     ...new Set(allPosts.map((post) => post.frontmatter.tags).flat()),
   ];
@@ -17,18 +23,35 @@ export async function getStaticPaths() {
     };
   });
 }
-const { tag } = Astro.params;
+
+export interface Props {
+  posts: MarkdownInstance<PostFrontMatter>[];
+}
+
+const tag = Astro.params.tag.toString();
 const { posts } = Astro.props;
+
+const mappedPosts: Post[] = posts.map(({ frontmatter }) => ({
+  date: frontmatter.pubDate,
+  description: frontmatter.description,
+  img: frontmatter.image.url,
+  altText: frontmatter.image.alt,
+  tag: frontmatter.tags[0],
+  title: frontmatter.title,
+  slug: frontmatter.slug,
+}));
+
+const pageTitle = tag.slice(0, 1)[0].toUpperCase() + tag.slice(1, tag.length);
 ---
 
-<Layout title={tag.toString()}>
-  <p>Posts tagged with {tag}</p>
+<Layout title={pageTitle}>
+  <section class="pt-24">
+    <div class="custom-container px-4">
+      <p>Posts tagged with <b>{tag}</b></p>
 
-  <ul>
-    {
-      posts.map((post) => (
-        <BlogPost url={post.url} title={post.frontmatter.title} />
-      ))
-    }
-  </ul>
+      <div class="space-y-10 mt-10">
+        {mappedPosts.map((p) => <PostCard {...p} />)}
+      </div>
+    </div>
+  </section>
 </Layout>

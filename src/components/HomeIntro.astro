@@ -3,8 +3,8 @@ import profilePic from "../assets/profile-pic.webp";
 import Socials from "./Socials.astro";
 ---
 
-<section class="pt-10 md:pt-40 lg:pt-56 lg:pb-52">
-  <div class="custom-container">
+<section class="pt-40 lg:pt-52 lg:pb-24">
+  <div class="custom-container px-4">
     <div class="flex flex-col md:flex-row">
       <div class="w-full lg:w-1/2 text-center md:text-left flex flex-col mt-10">
         <h1 class="text-4xl lg:text-6xl font-bold mb-5">Hi, I'm Sardor</h1>
@@ -13,10 +13,12 @@ import Socials from "./Socials.astro";
           this site I write about my learning and experience.
         </p>
         <div class="my-4"></div>
-        <Socials />
+        <div class="mx-auto md:mx-0">
+          <Socials />
+        </div>
       </div>
       <div
-        class="cover-img mx-auto w-5/12 md:w-auto md:ml-auto -order-1 mb-7 md:mb-0 md:order-1"
+        class="cover-img mx-auto w-2/3 md:w-auto md:ml-auto -order-1 mb-7 md:mb-0 md:order-1"
       >
         <img class="rounded-full w-full" src={profilePic} alt="" />
         <div class="dot-parent dot-1"><div class="dot"></div></div>

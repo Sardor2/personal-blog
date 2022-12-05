@@ -1,0 +1,54 @@
+---
+export interface Props {
+  tag: string;
+  title: string;
+  description: string;
+  date: string;
+  img: string;
+  altText: string;
+}
+
+const { date, description, tag, title, img, altText, slug } = Astro.props;
+---
+
+<div class="post-card flex flex-col md:flex-row gap-3 md:gap-8">
+  <div class="w-full card-img md:w-[240px] rounded-md overflow-hidden">
+    <img class="w-full h-full object-cover" src={img} alt={altText} />
+  </div>
+
+  <div class="w-full flex flex-col md:w-3/4 gap-y-3">
+    <div aria-label="tag" class="">
+      <span
+        class="h-7 px-5 inline-flex items-center bg-primary rounded-2xl text-sm text-white font-medium"
+        >{tag}</span
+      >
+    </div>
+    <h2 class="text-2xl md:w-11/12 lg:text-3xl font-bold">
+      <a
+        href={`/posts/${slug}`}
+        class="border-b-4 border-b-transparent hover:border-b-bgMain_dark dark:hover:border-b-bgMain transition-all"
+      >
+        {title}
+      </a>
+    </h2>
+    <p class="card-text">
+      {description}
+    </p>
+    <p class="mt-5 mb-5 text-textLight dark:text-textLight_dark">
+      {new Date(date).toLocaleDateString()}
+    </p>
+  </div>
+</div>
+
+<style>
+  .card-text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+
+  .card-img {
+    height: 240px;
+  }
+</style>

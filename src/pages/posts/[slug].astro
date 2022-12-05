@@ -1,0 +1,94 @@
+---
+import { MDXInstance } from "astro";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const posts = await Astro.glob<MDXInstance<{ slug: string }>>(
+    "../../data/posts/*.{md,mdx}"
+  );
+  return posts.map((p) => ({
+    params: {
+      slug: p.frontmatter.slug,
+    },
+    props: {
+      posts,
+    },
+  }));
+}
+
+const { slug } = Astro.params;
+const { posts } = Astro.props;
+
+const post = posts.find((p) => p.frontmatter.slug === slug);
+const Content = post.Content;
+---
+
+<Layout title={post.frontmatter.title}>
+  <section class="pt-32">
+    <div class="custom-container px-4 md:px-10">
+      <div class="max-w-2xl mx-auto">
+        <h1 class="text-3xl sm:text-5xl">
+          {post.frontmatter.title}
+        </h1>
+      </div>
+
+      <div class="banner-wrap">
+        <img
+          class="w-full h-full object-cover"
+          src={post.frontmatter.image.url}
+          alt=""
+        />
+      </div>
+
+      <div class="post-content max-w-3xl mx-auto">
+        <Content />
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style is:global>
+  .banner-wrap {
+    width: 80%;
+    height: 600px;
+    margin: 3rem auto;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .post-content {
+    font-size: 1.125rem;
+  }
+
+  .post-content > * {
+    margin-bottom: 3rem;
+  }
+
+  .post-content p {
+    word-wrap: break-word;
+    line-height: 1.65;
+  }
+
+  .post-content img {
+    border-radius: 10px;
+    max-width: 100%;
+  }
+
+  .post-content h2,
+  .post-content h3,
+  .post-content > h1,
+  .post-content h4,
+  .post-content h5,
+  .post-content h6 {
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: 576px) {
+    .banner-wrap {
+      height: 300px;
+      width: 100%;
+    }
+    .banner-wrap img {
+    }
+  }
+</style>

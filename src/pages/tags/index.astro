@@ -1,20 +1,25 @@
 ---
+import { log } from "astro/dist/core/logger/core";
 import Layout from "../../layouts/Layout.astro";
 
-const posts = await Astro.glob("../posts/*.md");
+const posts = await Astro.glob("../../data/posts/*.{mdx,md}");
 const tags = [...new Set(posts.map((post) => post.frontmatter.tags).flat())];
 ---
 
 <Layout title="Tags">
-  <div class="tags">
-    {
-      tags.map((tag) => (
-        <p class="tag">
-          <a href={`/tags/${tag}`}>{tag}</a>
-        </p>
-      ))
-    }
-  </div>
+  <section class="tags pt-20">
+    <div class="custom-container">
+      <div class="flex">
+        {
+          tags.map((tag) => (
+            <p class="tag">
+              <a href={`/tags/${tag}`}>{tag}</a>
+            </p>
+          ))
+        }
+      </div>
+    </div>
+  </section>
 </Layout>
 
 <style>
